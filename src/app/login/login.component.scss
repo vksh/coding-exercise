@@ -1,0 +1,58 @@
+.login {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .card {
+        margin: auto;
+        position: relative;
+        top: 15%;
+        text-align: center;
+        width: 50%;
+        .form-control {
+            margin-top: 20px;
+            &.ng-invalid {
+                &.ng-touched {
+                    border-color: red;
+                }
+            }
+        }
+        .btn-outline {
+            color: #226ac5;
+            background-color: transparent;
+            border-color: #559cb9;
+            border-radius: 0;
+            width: 100px;
+            height: 50px;
+            font-weight: 600;
+            margin: 10px;
+            &.disabled {
+                border-color: darkgrey;
+                color: darkgray;
+            }
+            &--cancel {
+                border-color: orange;
+                color: orange;
+            }
+        }
+        .alert {
+            color: red;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .validation-message-container {
+            text-align: start;
+            .validation-message {
+                color: red;
+                font-size: 14px;
+                text-align: start;
+            }
+        }
+    }
+    @media screen and (max-width: 586px) {
+        .card {
+            width: 90%;
+        }
+    }
+}

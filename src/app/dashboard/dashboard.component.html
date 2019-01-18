@@ -1,0 +1,55 @@
+<div class="dashboard">
+  <nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">ABC Corp.</span>
+    <button class="btn btn-outline-primary my-2 my-sm-0" (click)='logoutClicked()'>Logout</button>
+  </nav>
+  <div class="card">
+    <div class="card-body">
+      <div *ngIf='loginOutProcess'>
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <h6>Loging out, Please wait</h6>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-lg-3">
+          <img src='../../assets/single_user.png'>
+        </div>
+        <div class="col-sm-12 col-lg-9 m-auto" *ngIf='isLoading'>
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <h6>Loading Information</h6>
+        </div>
+        <div class="col-sm-12 col-lg-9 m-auto" *ngIf='!isLoading'>
+          <h5 class="dashboard-heading">Welcome, {{userInfo.firstName}}</h5>
+          <h6 class="dashboard-subheading">We are glad to have you here.</h6>
+          <h6 class="dashboard-subheading">Email: {{userInfo.email}}</h6>
+          <h6 class="dashboard-subheading">Contact: {{userInfo.contact}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf='!isLoading' class="container mt-4">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Team</th>
+            <th scope="col">Points</th>
+            <th scope="col">GD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let data of tableData'>
+            <th scope="row">{{data.rank}}</th>
+            <td>{{data.name}}</td>
+            <td>{{data.points}}</td>
+            <td>{{data.goalScored}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

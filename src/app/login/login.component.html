@@ -1,0 +1,62 @@
+<div class="login">
+  <div class="card">
+    <div class="card-body">
+      <h4>Please Login To Continue.</h4>
+      <div *ngIf='loginInProcess'>
+      <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <h6>Loging in, Please wait</h6>
+      </div>
+      <div>
+        <img src="../../assets/single_user.png" id="icon" alt="User Icon" />
+      </div>
+      <div class="alert" *ngIf="serverErrorMessages">
+          {{serverErrorMessages}}
+      </div>
+      <form #signInForm="ngForm"
+        (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+        <input
+          class="form-control"
+          type="text"
+          name="username"
+          #username="ngModel"
+          [pattern]='emailRegex'
+          [(ngModel)]="model.username"
+          placeholder="Username"
+          (input)='checkForValidation($event, username)'
+          required [ngClass]="{'invalid-textbox' :signInForm.submitted && !username.valid }">
+        <div class="validation-message-container" *ngIf="username.errors?.pattern">
+          <label class="validation-message">Enter a valid username</label>
+        </div>
+        <div class="validation-message-container" *ngIf="username.errors?.required && username.touched">
+            <label class="validation-message">Please enter username</label>
+          </div>
+        <input
+          class="form-control"
+          type="password"
+          name="password"
+          #password="ngModel"
+          [(ngModel)]="model.password"
+          placeholder="Password"
+          required
+          (input)='checkForValidation($event, password)'
+          [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+        <div class="validation-message-container" *ngIf="password.errors?.pattern">
+          <label class="validation-message">Enter a valid password.</label>
+        </div>
+        <div class="validation-message-container" *ngIf="password.errors?.required && password.touched">
+            <label class="validation-message">Please enter password.</label>
+          </div>
+        <div class="mt-3">
+          <button type="submit" class="btn btn-primary btn-outline"
+            [class.disabled]='!signInForm.valid'>Login</button>
+          <button class="btn btn-outline btn-outline--cancel"
+          (click)='cancelClicked()'>Cancel</button>
+        </div>
+      </form>
+      <!-- Error message -->
+      
+    </div>
+  </div>
+</div>
